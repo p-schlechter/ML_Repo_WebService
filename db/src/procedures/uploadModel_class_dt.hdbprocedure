@@ -1,0 +1,10 @@
+PROCEDURE "ML_Repo_WebService.db.procedures::uploadModel_class_dt.hdbprocedure" ()
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   AS
+BEGIN
+	delete from "ML_Repo_WebService.db.cds::PAL_CLASS_DT.Model";
+	p1 = SELECT "ID","MA","WG", "BERUF", "JAHR", "MONAT", "WOCHENTAG", "FEIERTAG", "GUTESWETTER", "SCHICHT"FROM "ML_Repo_WebService.db.cds::tables.int_classification";
+	insert into "ML_Repo_WebService.db.cds::PAL_CLASS_DT.Model" values (1, 'test');
+END

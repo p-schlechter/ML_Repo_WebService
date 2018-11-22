@@ -1,0 +1,22 @@
+{ 
+  "area" : "AFLPAL", 
+  "function" : "DTPREDICT_ANY", 
+  "parameters" : [ 
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL_CLASS_DT.TT_DataPredict", 
+      "direction" : "IN" 
+    },
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL_CLASS_DT.TT_Model", 
+      "direction" : "IN" 
+    },
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL_CLASS_DT.TT_Params", 
+      "direction" : "IN" 
+    },
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL_CLASS_DT.TT_Result", 
+      "direction" : "OUT" 
+    }
+  ]
+}

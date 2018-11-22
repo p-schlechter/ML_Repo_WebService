@@ -1,0 +1,13 @@
+PROCEDURE "ML_Repo_WebService.db.procedures::predict" (IN ForecastLength INTEGER)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   AS
+BEGIN
+	upsert "ML_Repo_WebService.db.cds::PAL.ParamsForecast" values ('ForecastLength', :ForecastLength, null, null) where "name" = 'ForecastLength';
+	delete from "ML_Repo_WebService.db.cds::PAL.Forecast";
+	p1 = select * from "ML_Repo_WebService.db.cds::PAL.Model";
+	p2 = select * from "ML_Repo_WebService.db.cds::PAL.ParamsForecast";
+	call "ML_Repo_WebService.db.procedures::PALpredict" (:p1, :p2, :p3);                              
+	insert into "ML_Repo_WebService.db.cds::PAL.Forecast" select * from :p3;
+END

@@ -1,0 +1,18 @@
+{ 
+  "area" : "AFLPAL", 
+  "function" : "AUTOARIMA", 
+  "parameters" : [ 
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL.TTData", 
+      "direction" : "IN" 
+    }, 
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL.TTParams", 
+      "direction" : "IN" 
+    }, 
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL.TTModel", 
+      "direction" : "OUT" 
+    } 
+  ]
+}

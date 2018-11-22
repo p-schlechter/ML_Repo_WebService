@@ -1,0 +1,129 @@
+namespace ML_Repo_WebService.db.cds;
+
+context PAL_CLASS_DT {
+
+    /*@@layout{"layoutInfo":{"x":-9,"y":86.5}}*/
+    table type TT_Data {
+        MA          : String(20);
+        WG          : String(10);
+        BERUF       : String(30);
+        JAHR        : Integer;
+        MONAT       : String(20);
+        WOCHENTAG   : String(20);
+        FEIERTAG    : String(10);
+        GUTESWETTER : String(10);
+        SCHICHT     : String(10);
+        AUSFALL     : String(10);
+    };
+
+    /*@@layout{"layoutInfo":{"x":-568,"y":-165.5}}*/
+    table type TT_Params {
+        name       : String(100);
+        intargs    : Integer;
+        doubleargs : Double;
+        stringargs : String(100);
+    };
+
+    /*@@layout{"layoutInfo":{"x":-297,"y":-166.5}}*/
+    table type TT_Model {
+        rowindex     : Integer;
+        modelcontent : String(5000);
+    };
+
+    /*@@layout{"layoutInfo":{"x":-42,"y":-167.5}}*/
+    table type TT_DecisionRules {
+        rowindex     : Integer;
+        rulescontent : String(5000);
+    };
+
+    /*@@layout{"layoutInfo":{"x":224,"y":-168.5}}*/
+    table type TT_ConfusionMatrix {
+        actualclass    : String(1000);
+        predictedclass : String(1000);
+        count          : Integer;
+    };
+
+    /*@@layout{"layoutInfo":{"x":498,"y":-169.5}}*/
+    table type TT_Statistics {
+        statname  : String(1000);
+        statvalue : String(1000);
+    };
+
+    /*@@layout{"layoutInfo":{"x":752,"y":-165.5}}*/
+    table type TT_Placeholder {
+        paramname   : String(256);
+        intvalue    : Integer;
+        doublevalue : Double;
+        stringvalue : String(1000);
+    };
+
+    /*@@layout{"layoutInfo":{"x":559,"y":80}}*/
+    entity ParamsTrain {
+        name       : String(100) not null;
+        intargs    : Integer;
+        doubleargs : Double;
+        stringargs : String(100);
+    };
+
+    entity ParamsPredict {
+        name       : String(100) not null;
+        intargs    : Integer;
+        doubleargs : Double;
+        stringargs : String(100);
+    };
+
+    entity Model {
+        rowindex     : Integer not null;
+        modelcontent : String(5000);
+    };
+
+    entity DecisionRules {
+        rowindex     : Integer not null;
+        rulescontent : String(5000);
+    };
+
+    entity ConfusionMatrix {
+        actualclass    : String(1000) not null;
+        predictedclass : String(1000);
+        count          : Integer;
+    };
+
+    entity Statistics {
+        statname  : String(1000) not null;
+        statvalue : String(1000);
+    };
+
+    entity Placeholder {
+        paramname   : String(256) not null;
+        intvalue    : Integer;
+        doublevalue : Double;
+        stringvalue : String(1000);
+    };
+
+    /*@@layout{"layoutInfo":{"x":-520,"y":78.5}}*/
+    table type TT_DataPredict {
+        ID          : Integer;
+        MA          : String(20);
+        WG          : String(10);
+        BERUF       : String(30);
+        JAHR        : Integer;
+        MONAT       : String(20);
+        WOCHENTAG   : String(20);
+        FEIERTAG    : String(10);
+        GUTESWETTER : String(10);
+        SCHICHT     : String(10);
+    };
+
+    /*@@layout{"layoutInfo":{"x":256,"y":135.5}}*/
+    table type TT_Result {
+        ID         : Integer;
+        SCORE      : String(100);
+        CONFIDENCE : Double;
+    };
+
+    entity Result {
+        ID         : Integer not null;
+        SCORE      : String(100);
+        CONFIDENCE : Double;
+    };
+};

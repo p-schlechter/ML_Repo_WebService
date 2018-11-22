@@ -1,0 +1,17 @@
+namespace ML_Repo_WebService.db.cds;
+
+context Common
+{
+    type TyTableKey : Integer64;
+    type TyQuantity : Integer;
+    type TyAmount : Decimal(15, 2);
+    type TyDate : LocalDate;
+    type TyDateTime : UTCDateTime;
+    type TyDouble : BinaryFloat;
+    
+    type TyTimeSliceStruct
+    {
+        ValidFrom : TyDateTime;
+        ValidTo : TyDateTime;
+    };  
+}  

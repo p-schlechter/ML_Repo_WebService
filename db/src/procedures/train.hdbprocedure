@@ -1,0 +1,13 @@
+PROCEDURE "ML_Repo_WebService.db.procedures::train" (IN SEARCH_STRATEGY INTEGER)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   AS
+BEGIN
+	upsert "ML_Repo_WebService.db.cds::PAL.ParamsTrain" values ('SEARCH_STRATEGY', :SEARCH_STRATEGY, null, null) where "name" = 'SEARCH_STRATEGY';
+	delete from "ML_Repo_WebService.db.cds::PAL.Model";
+	p1 = select "id", "close" as "value" from "ML_Repo_WebService.db.cds::tables.StockPrices";
+	p2 = select * from "ML_Repo_WebService.db.cds::PAL.ParamsTrain";
+	call "ML_Repo_WebService.db.procedures::PALtrain" (:p1, :p2, :p3);                              
+	insert into "ML_Repo_WebService.db.cds::PAL.Model" select * from :p3;
+END

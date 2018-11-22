@@ -1,0 +1,34 @@
+{ 
+  "area" : "AFLPAL", 
+  "function" : "DECISIONTREE_ANY", 
+  "parameters" : [ 
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL_CLASS_DT.TT_Data", 
+      "direction" : "IN" 
+    }, 
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL_CLASS_DT.TT_Params", 
+      "direction" : "IN" 
+    }, 
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL_CLASS_DT.TT_Model", 
+      "direction" : "OUT" 
+    },
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL_CLASS_DT.TT_DecisionRules", 
+      "direction" : "OUT" 
+    },
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL_CLASS_DT.TT_ConfusionMatrix", 
+      "direction" : "OUT" 
+    },
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL_CLASS_DT.TT_Statistics", 
+      "direction" : "OUT" 
+    },
+    { 
+      "type" : "ML_Repo_WebService.db.cds::PAL_CLASS_DT.TT_Placeholder", 
+      "direction" : "OUT" 
+    }
+  ]
+}

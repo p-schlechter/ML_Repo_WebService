@@ -1,0 +1,29 @@
+namespace ML_Repo_WebService.db.cds;
+
+context tables {
+    entity StockPrices {
+        key id       : Integer not null;
+            date     : LocalDate;
+            open     : Double;
+            high     : Double;
+            low      : Double;
+            close    : Double;
+            volume   : Integer;
+            adjClose : Double;
+    };
+
+    /*@@layout{"layoutInfo":{"x":-620,"y":-134.5}}*/
+    entity int_classification {
+        key ID          : Integer not null;
+            MA          : String(20);
+            WG          : String(10);
+            BERUF       : String(30);
+            JAHR        : Integer;
+            MONAT       : String(20);
+            WOCHENTAG   : String(20);
+            FEIERTAG    : String(10);
+            GUTESWETTER : String(10);
+            SCHICHT     : String(10);
+            AUSFALL     : String(10);
+    };
+};

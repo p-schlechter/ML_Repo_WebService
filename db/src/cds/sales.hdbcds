@@ -1,0 +1,117 @@
+namespace ML_Repo_WebService.db.cds;
+
+using ML_Repo_WebService.db.cds::Common.TyTimeSliceStruct;
+using ML_Repo_WebService.db.cds::Common.TyTableKey;
+using ML_Repo_WebService.db.cds::Common.TyQuantity;
+using ML_Repo_WebService.db.cds::Common.TyAmount;
+using ML_Repo_WebService.db.cds::Common.TyDate;
+using ML_Repo_WebService.db.cds::Common.TyDateTime;
+using ML_Repo_WebService.db.cds::Common.TyDouble;    
+    
+context Sales
+{
+    entity FactSales
+    {
+        key SalesId          : TyTableKey not null;
+            ChannelId        : TyTableKey not null;
+            StoreId          : TyTableKey not null;
+            ProductId        : TyTableKey not null;
+            PromotionId      : TyTableKey not null;
+            Date             : TyDate     not null;
+            SalesAmount      : TyAmount;
+            TotalCost        : TyAmount;
+            DiscountAmount   : TyAmount;
+            DiscountQuantity : TyQuantity;
+            ReturnAmount     : TyAmount;
+            ReturnQuantity   : TyQuantity;
+            SalesQuantity    : TyQuantity;
+            UnitPrice        : TyAmount;
+            UnitCost         : TyAmount;
+    }
+    technical configuration
+    {
+        index DateSelection on (Date) asc;
+    };
+
+    entity DimStore
+    {
+    	key SurrId		    		: TyTableKey not null;
+        key StoreId         		: TyTableKey not null;
+            StoreType       		: String(15);
+            StoreName       		: String(100);
+            StoreDescription		: String(300);
+            Status          		: String(20);
+            OpenDate        		: TyDate;
+            CloseDate       		: TyDate;
+            StorePhone      		: String(15);
+            StoreFax        		: String(14);
+			Country					: String(100);
+			ZipCode					: String(20);
+			City					: String(100);
+			Street					: String(100);
+            EmployeeCount   		: TyQuantity;
+            SellingAreaSize 		: DecimalFloat;
+            AddrLatitude			: TyDouble;
+            AddrLongitude			: TyDouble;
+            AddrLatitudeLongitude	: hana.ST_POINT(4326);
+            GeoSideOfStreet 		: String(1);
+            GeoInfoCode 			: String(4);
+            GeoAsmtLevel			: String(3);
+            TimeSlice       		: TyTimeSliceStruct;
+    }
+
+    entity DimChannel
+    {
+    	key SurrId			   : TyTableKey not null;
+        key ChannelId          : TyTableKey not null;
+            ChannelLabel       : String(100);
+            ChannelName        : String(20);
+            ChannelDescription : String(50);
+            TimeSlice          : TyTimeSliceStruct;
+    }
+
+    entity DimProduct
+    {
+    	key SurrId			     : TyTableKey not null;
+        key ProductId            : TyTableKey not null;
+            ProductLabel         : String(255);
+            ProductName          : String(500);
+            ProductDescription   : String(400);
+            Manufacturer         : String(50);
+            BrandName            : String(50);
+            ClassName            : String(20);
+            StyleName            : String(20);
+            ColorName            : String(20);
+            Size                 : String(50);
+            SizeRange            : String(50);
+            Weight               : DecimalFloat;
+            UnitOfMeasureID      : String(10);
+            UnitOfMeasureName    : String(40);
+            StockTypeName        : String(40);
+            UnitCost             : TyAmount;
+            UnitPrice            : TyAmount;
+            AvailableForSaleDate : TyDateTime;
+            StopSaleDate         : TyDateTime;
+            Status               : String(7);
+            ImageURL             : String(150);
+            ProductURL           : String(150);
+            TimeSlice            : TyTimeSliceStruct;
+    }
+
+    entity DimPromotion
+    {
+    	key SurrId			     : TyTableKey not null;
+        key PromotionId          : TyTableKey not null;
+            PromotionLabel       : String(100);
+            PromotionName        : String(50);
+            PromotionDescription : String(255);
+            DiscountPercent      : DecimalFloat;
+            PromotionType        : String(50);
+            PromotionCategory    : String(50);
+            MinQuantity          : TyQuantity;
+            MaxQuantity          : TyQuantity;
+            StartDate            : TyDateTime;
+            EndDate              : TyDateTime;
+            TimeSlice            : TyTimeSliceStruct;
+    }
+};

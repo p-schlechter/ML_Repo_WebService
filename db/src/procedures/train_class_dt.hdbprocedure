@@ -1,0 +1,17 @@
+PROCEDURE "ML_Repo_WebService.db.procedures::train_class_dt.hdbprocedure" (IN ALGORITHM Integer)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   AS
+BEGIN
+	upsert "ML_Repo_WebService.db.cds::PAL_CLASS_DT.ParamsTrain" values ('ALGORITHM', :ALGORITHM, null, null) where "name" = 'ALGORITHM';
+	delete from "ML_Repo_WebService.db.cds::PAL_CLASS_DT.Model";
+	p1 = SELECT "MA","WG", "BERUF", "JAHR", "MONAT", "WOCHENTAG", "FEIERTAG", "GUTESWETTER", "SCHICHT", "AUSFALL" FROM "ML_Repo_WebService.db.cds::tables.int_classification";
+	p2 = select * from "ML_Repo_WebService.db.cds::PAL_CLASS_DT.ParamsTrain";
+	call "ML_Repo_WebService.db.procedures::PAL_CLASS_DT_train" (:p1, :p2, :p3, :p4, :p5, :p6, :p7);                              
+	insert into "ML_Repo_WebService.db.cds::PAL_CLASS_DT.Model" select * from :p3;
+	insert into "ML_Repo_WebService.db.cds::PAL_CLASS_DT.DecisionRules" select * from :p4;
+	insert into "ML_Repo_WebService.db.cds::PAL_CLASS_DT.ConfusionMatrix" select * from :p5;
+	insert into "ML_Repo_WebService.db.cds::PAL_CLASS_DT.Statistics" select * from :p6;
+	insert into "ML_Repo_WebService.db.cds::PAL_CLASS_DT.Placeholder" select * from :p7;
+END

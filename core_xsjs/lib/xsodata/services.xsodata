@@ -1,0 +1,10 @@
+service namespace "ML_Repo_WebService.db" {
+    "ML_Repo_WebService.db.cds::tables.StockPrices" as "StockPrices" 
+        create forbidden 
+        update forbidden 
+        delete forbidden;
+    "ML_Repo_WebService.db.cds::PAL.Forecast" as "Forecast" 
+        create forbidden 
+        update forbidden 
+        delete forbidden;
+}

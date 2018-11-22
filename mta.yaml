@@ -1,0 +1,22 @@
+ID: ML_Repo_WebService
+_schema-version: '2.0'
+version: 0.0.1
+modules:
+  - name: core_xsjs
+    type: nodejs
+    path: core_xsjs
+    requires:
+      - name: hdi_db
+  - name: db
+    type: hdb
+    path: db
+    requires:
+      - name: hdi_db
+resources:
+  - name: hdi_db
+    parameters:
+      config:
+        schema: ML_REPO_WEBSERVICE_HDI_DB_1
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container

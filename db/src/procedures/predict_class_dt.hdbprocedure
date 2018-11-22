@@ -1,0 +1,13 @@
+PROCEDURE "ML_Repo_WebService.db.procedures::predict_class_dt.hdbprocedure" ()
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   AS
+BEGIN
+	delete from "ML_Repo_WebService.db.cds::PAL_CLASS_DT.Result";
+	p1 = SELECT "ID","MA","WG", "BERUF", "JAHR", "MONAT", "WOCHENTAG", "FEIERTAG", "GUTESWETTER", "SCHICHT"FROM "ML_Repo_WebService.db.cds::tables.int_classification";
+	p2 = select * from "ML_Repo_WebService.db.cds::PAL_CLASS_DT.Model";
+	p3 = select * from "ML_Repo_WebService.db.cds::PAL_CLASS_DT.ParamsTrain";
+	call "ML_Repo_WebService.db.procedures::PAL_CLASS_DT_predict" (:p1, :p2, :p3, :p4);                              
+	insert into "ML_Repo_WebService.db.cds::PAL_CLASS_DT.Result" select * from :p4;
+END
